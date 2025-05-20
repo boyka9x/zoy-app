@@ -1,10 +1,16 @@
-import {register} from "@shopify/web-pixels-extension";
+import { register } from "@shopify/web-pixels-extension";
+import { KeyHelper } from "./helpers";
+import { checkoutStartedHandler } from "./events";
 
-register(({ analytics, browser, init, settings }) => {
-    // Bootstrap and insert pixel script tag here
+register(async ({ analytics, browser, init, settings }) => {
+  // Bootstrap and insert pixel script tag here
+  const states = {};
 
-    // Sample subscribe to page view
-    analytics.subscribe('page_viewed', (event) => {
-      console.log('Page viewed', event);
-    });
+  await KeyHelper.init(states, browser);
+  if (!states.session || !states.visitor || !states.page) return;
+
+  // Sample subscribe to page view
+  analytics.subscribe('checkout_started', async (event) => {
+    await checkoutStartedHandler({ event, });
+  });
 });

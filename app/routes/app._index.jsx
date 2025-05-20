@@ -1,4 +1,5 @@
-import { BlockStack, Card, Layout, Page, Text } from '@shopify/polaris';
+import { BlockStack, Button, Card, Layout, Page, Text } from '@shopify/polaris';
+import { ExternalIcon } from '@shopify/polaris-icons';
 import { authenticate } from '../shopify.server';
 
 export const loader = async ({ request }) => {
@@ -26,14 +27,32 @@ export default function Index() {
                 <Layout>
                     <Layout.Section>
                         <Card>
-                            <BlockStack gap="500">
-                                <BlockStack gap="200">
-                                    <Text as="h2" variant="headingMd">
-                                        Congratulations! The Record & Heatmap
-                                        app has been successfully connected. 🎉
-                                    </Text>
-                                </BlockStack>
+                            <BlockStack gap="400">
+                                <Text as="h2" variant="headingMd">
+                                    🎉 Connected successfully!
+                                </Text>
+                                <Text as="p" variant="bodyMd" tone="subdued">
+                                    The Heatmap, Record & Replay app is now
+                                    connected to your store. You can now start
+                                    monitoring sessions and visualizing customer
+                                    interactions.
+                                </Text>
                             </BlockStack>
+
+                            <div style={{ marginTop: '16px' }}>
+                                <Button
+                                    icon={ExternalIcon}
+                                    variant="primary"
+                                    onClick={() =>
+                                        window.open(
+                                            'https://your-app-url.com',
+                                            '_blank',
+                                        )
+                                    }
+                                >
+                                    Open App
+                                </Button>
+                            </div>
                         </Card>
                     </Layout.Section>
                 </Layout>
