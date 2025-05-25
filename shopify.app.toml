@@ -3,7 +3,7 @@
 client_id = "df5796e07bd3899b54f11db327f9d4b3"
 name = "app-zoy"
 handle = "app-zoy"
-application_url = "https://clusters-lecture-focal-wrist.trycloudflare.com"
+application_url = "https://f-guam-regard-dramatic.trycloudflare.com"
 embedded = true
 
 [build]
@@ -23,13 +23,13 @@ api_version = "2025-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products"
+scopes = "write_pixels,read_customer_events"
 
 [auth]
 redirect_urls = [
-  "https://clusters-lecture-focal-wrist.trycloudflare.com/auth/callback",
-  "https://clusters-lecture-focal-wrist.trycloudflare.com/auth/shopify/callback",
-  "https://clusters-lecture-focal-wrist.trycloudflare.com/api/auth/callback"
+  "https://f-guam-regard-dramatic.trycloudflare.com/auth/callback",
+  "https://f-guam-regard-dramatic.trycloudflare.com/auth/shopify/callback",
+  "https://f-guam-regard-dramatic.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

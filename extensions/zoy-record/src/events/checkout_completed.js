@@ -1,7 +1,8 @@
 import { createPingQuery, sendEvent } from "../helpers";
 
-export async function checkoutStartedHandler({ event, init, states }) {
+export async function checkoutCompletedHandler({ event, init, states }) {
     const { location, title } = init.context.document;
+    const _c = event.data.checkout;
 
     const pingQuery = createPingQuery({
         title,
@@ -15,11 +16,16 @@ export async function checkoutStartedHandler({ event, init, states }) {
             type: 6,
             timestamp: new Date(event.timestamp).getTime(),
             data: {
-                tag: 'checkout-started',
+                tag: 'checkout-completed',
                 payload: {
-                    checkout_url: location.href,
                     checkout_title: title,
-                    checkout_step_name: 'Checkout Started',
+                    checkout_url: location.href,
+                    order_id: _c.order.id,
+                    order_total: _c.totalPrice.amount,
+                    order_currency: _c.currencyCode,
+                    order_subtotal: _c.subtotalPrice.amount,
+                    order_shipping: _c.shippingLine && _c.shippingLine.price.amount,
+                    order_tax: _c.totalTax.amount,
                 },
             },
         },

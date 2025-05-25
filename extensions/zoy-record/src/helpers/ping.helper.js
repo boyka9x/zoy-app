@@ -1,15 +1,16 @@
 import { gzipSync, strToU8 } from 'fflate';
 
-export function createPingQuery(
-    { page_key, visitor_key, session_key, location, title, init },
-) {
+export function createPingQuery({ location, title, init, states }) {
     return new URLSearchParams({
-        page_key: page_key,
-        visitor_key,
-        session_key,
-        page_href: location.href,
-        title: title,
-        ...init.context.window.screen,
+        _p: states.page,
+        _v: states.visitor,
+        _s: states.session,
+        _t: title,
+        _href: location.href,
+        _w: init.context.window.innerWidth,
+        _h: init.context.window.innerHeight,
+        domain: states.domain,
+        _px: true,
     });
 }
 

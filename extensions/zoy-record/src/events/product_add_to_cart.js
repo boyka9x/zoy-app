@@ -1,13 +1,14 @@
 import { createPingQuery, sendEvent } from "../helpers";
 
-export async function checkoutStartedHandler({ event, init, states }) {
+export async function addToCartHandler({ event, init, states }) {
     const { location, title } = init.context.document;
+    const _c = event.data.cartLine;
 
     const pingQuery = createPingQuery({
+        states,
         title,
         init,
-        states,
-        location
+        location,
     });
 
     const events = [
@@ -15,11 +16,11 @@ export async function checkoutStartedHandler({ event, init, states }) {
             type: 6,
             timestamp: new Date(event.timestamp).getTime(),
             data: {
-                tag: 'checkout-started',
+                tag: 'add-to-cart',
                 payload: {
-                    checkout_url: location.href,
-                    checkout_title: title,
-                    checkout_step_name: 'Checkout Started',
+                    name: _c.merchandise.product.untranslatedTitle,
+                    url: _c.merchandise.product.url,
+                    variantTitle: _c.merchandise.untranslatedTitle,
                 },
             },
         },
