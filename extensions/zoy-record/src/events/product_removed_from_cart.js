@@ -16,7 +16,7 @@ export async function removedFromCartHandler({ event, init, states }) {
             type: 6,
             timestamp: new Date(event.timestamp).getTime(),
             data: {
-                tag: 'add-to-cart',
+                tag: 'removed-from-cart',
                 payload: {
                     name: _c.merchandise.product.untranslatedTitle,
                     url: _c.merchandise.product.url,
